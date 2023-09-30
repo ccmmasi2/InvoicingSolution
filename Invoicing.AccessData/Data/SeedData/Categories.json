@@ -1,0 +1,22 @@
+[
+  {
+    "ID": "1",
+    "Nombre": "Comida"
+  },
+  {
+    "ID": "2",
+    "Nombre": "Frutas"
+  },
+  {
+    "ID": "3",
+    "Nombre": "Cervezas"
+  },
+  {
+    "ID": "4",
+    "Nombre": "Celulares"
+  },
+  {
+    "ID": "5",
+    "Nombre": "Computadores"
+  }
+]
