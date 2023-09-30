@@ -74,3 +74,14 @@
 /Invoicing.DTOObjects/obj/Invoicing.DTOObjects.csproj.nuget.g.targets
 /Invoicing.DTOObjects/obj/project.assets.json
 /Invoicing.DTOObjects/obj/project.nuget.cache
+/.vs/Invoicing.Solution/config/applicationhost.config
+/.vs/Invoicing.Solution/FileContentIndex/411bd784-38e2-498f-b576-40e24a43c676.vsidx
+/.vs/Invoicing.Solution/FileContentIndex/73f8c15f-d7b4-4ec4-a94f-f34083c11cc9.vsidx
+/.vs/Invoicing.Solution/FileContentIndex/a8da7655-e4ca-4178-bb6c-c449db06dddd.vsidx
+/.vs/Invoicing.Solution/FileContentIndex/f7f4a3d1-652f-4b4c-9de5-16bb1eae6c4d.vsidx
+/Invoicing.AccessData/bin/Debug/net8.0/Invoicing.AccessData.deps.json
+/Invoicing.AccessData/bin/Debug/net8.0/Invoicing.AccessData.dll
+/Invoicing.AccessData/bin/Debug/net8.0/Invoicing.AccessData.pdb
+/Invoicing.AccessData/bin/Debug/net8.0/Invoicing.AccessData.runtimeconfig.json
+/Invoicing.AccessData/bin/Debug/net8.0/Invoicing.DTOObjects.dll
+/Invoicing.AccessData/bin/Debug/net8.0/Invoicing.DTOObjects.pdb

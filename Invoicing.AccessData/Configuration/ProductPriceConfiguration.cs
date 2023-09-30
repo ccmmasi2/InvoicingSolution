@@ -1,4 +1,4 @@
-﻿using Invoicing.AccessData.DTOs;
+﻿using Invoicing.DTOObjects.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

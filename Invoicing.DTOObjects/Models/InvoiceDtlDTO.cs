@@ -1,8 +1,11 @@
 ﻿using Invoicing.DTOObjects.Models.Base;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Invoicing.DTOObjects.Models
 {
+    [Table("InvoicesDtl")]
+
     public class InvoiceDtlDTO : BaseDTO
     {
         [Key]

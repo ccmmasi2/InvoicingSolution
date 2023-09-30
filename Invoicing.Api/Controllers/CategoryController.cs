@@ -6,7 +6,7 @@ namespace Invoicing.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController
+    public class CategoryController : ControllerBase
     {
         private readonly ICategoryRepository _repo;
         private readonly ILogger<CategoryController> _logger;
@@ -23,8 +23,7 @@ namespace Invoicing.Api.Controllers
         {
             _logger.LogInformation("Get list Categories");
             var listCategory = await _repo.GetAll();
-            return Ok(lista);
+            return Ok(listCategory);
         }
-
     }
 }
