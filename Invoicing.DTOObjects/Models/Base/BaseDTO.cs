@@ -1,4 +1,4 @@
-﻿namespace Invoicing.AccessData.DTOs.Base
+﻿namespace Invoicing.DTOObjects.Models.Base
 {
     public abstract class BaseDTO
     {

@@ -1,7 +1,7 @@
-﻿using Invoicing.AccessData.DTOs.Base;
+﻿using Invoicing.DTOObjects.Models.Base;
 using System.ComponentModel.DataAnnotations;
 
-namespace Invoicing.AccessData.DTOs
+namespace Invoicing.DTOObjects.Models
 {
     public class StoreDTO : BaseDTO
     {

@@ -1,15 +1,15 @@
 ﻿using Invoicing.AccessData.Data;
-using Invoicing.AccessData.DTOs;
+using Invoicing.DTOObjects.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
 namespace Invoicing.AccessData.Init
 {
-    public class BDInitializer : IDBInitializer
+    public class DBInitializer : IDBInitializer
     {
         private readonly AppDbContext _db;
 
-        public BDInitializer(AppDbContext db)
+        public DBInitializer(AppDbContext db)
         {
             _db = db;
         }

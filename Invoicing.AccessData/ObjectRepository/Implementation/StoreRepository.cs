@@ -1,6 +1,6 @@
 ﻿using Invoicing.AccessData.Data;
-using Invoicing.AccessData.DTOs;
 using Invoicing.AccessData.Repository.Implementation;
+using Invoicing.DTOObjects.Models;
 
 namespace Invoicing.AccessData.ObjectRepository.Interface
 {

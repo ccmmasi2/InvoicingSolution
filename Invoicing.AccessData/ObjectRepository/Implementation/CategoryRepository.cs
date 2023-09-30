@@ -1,10 +1,10 @@
 ﻿using Invoicing.AccessData.Data;
-using Invoicing.AccessData.DTOs;
 using Invoicing.AccessData.Repository.Implementation;
+using Invoicing.DTOObjects.Models;
 
 namespace Invoicing.AccessData.ObjectRepository.Interface
 {
-    public class CategoryRepository : Repository<CategoryConfiguration>, ICategoryRepository
+    public class CategoryRepository : Repository<CategoryDTO>, ICategoryRepository
     {
         private readonly AppDbContext _dbcontext;
 
