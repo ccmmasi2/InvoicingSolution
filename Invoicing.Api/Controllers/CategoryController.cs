@@ -19,7 +19,7 @@ namespace Invoicing.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<CategoryDTO>>> GetAll()
+        public async Task<ActionResult<IEnumerable<Category>>> GetAll()
         {
             _logger.LogInformation("Get list Categories");
             var listCategory = await _repo.GetAll();

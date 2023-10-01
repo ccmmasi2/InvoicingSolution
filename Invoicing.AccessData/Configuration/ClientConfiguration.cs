@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Invoicing.AccessData.Configuration
 {
-    public class ClientConfiguration : IEntityTypeConfiguration<ClientDTO>
+    public class ClientConfiguration : IEntityTypeConfiguration<Client>
     {
-        public void Configure(EntityTypeBuilder<ClientDTO> builder)
+        public void Configure(EntityTypeBuilder<Client> builder)
         {
             builder.Property(c => c.ID).IsRequired();
             builder.Property(c => c.Identificacion).IsRequired();

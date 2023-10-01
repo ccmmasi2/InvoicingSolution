@@ -1,12 +1,9 @@
-﻿using Invoicing.DTOObjects.Models.Base;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Invoicing.DTOObjects.Models
 {
-    [Table("Products")]
-
-    public class ProductDTO : BaseDTO
+    public class Product
     {
         [Key]
         public int ID { get; set; }
@@ -22,6 +19,7 @@ namespace Invoicing.DTOObjects.Models
         [Required(ErrorMessage = "Required field")]
         public int IDCategory { get; set; }
 
-        public CategoryDTO Category { get; set; }
+        [ForeignKey("IDCategory")]
+        public Category Category { get; set; }
     }
 }

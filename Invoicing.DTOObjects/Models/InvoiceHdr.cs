@@ -1,12 +1,9 @@
-﻿using Invoicing.DTOObjects.Models.Base;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Invoicing.DTOObjects.Models
 {
-    [Table("InvoicesHdr")]
-
-    public class InvoiceHdrDTO : BaseDTO
+    public class InvoiceHdr
     {
         [Key]
         public string InvoiceNum { get; set; }
@@ -17,11 +14,13 @@ namespace Invoicing.DTOObjects.Models
         [Required(ErrorMessage = "Required field")]
         public int IDClient { get; set; }
 
-        public ClientDTO Client { get; set; }
+        [ForeignKey("IDClient")]
+        public Client Client { get; set; }
 
         [Required(ErrorMessage = "Required field")]
         public int IDStore { get; set; }
 
-        public StoreDTO Store { get; set; }
+        [ForeignKey("IDStore")]
+        public Store Store { get; set; }
     }
 }

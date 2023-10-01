@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Invoicing.AccessData.Configuration
 {
-    public class ProductPriceConfiguration : IEntityTypeConfiguration<ProductPriceDTO>
+    public class ProductPriceConfiguration : IEntityTypeConfiguration<ProductPrice>
     {
-        public void Configure(EntityTypeBuilder<ProductPriceDTO> builder)
+        public void Configure(EntityTypeBuilder<ProductPrice> builder)
         {
             builder.Property(c => c.ID).IsRequired();
             builder.Property(c => c.IDProduct).IsRequired();

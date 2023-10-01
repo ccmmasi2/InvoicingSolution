@@ -3,7 +3,7 @@ using Invoicing.DTOObjects.Models;
 
 namespace Invoicing.AccessData.ObjectRepository.Interface
 {
-    public interface ICategoryRepository : IRepository<CategoryDTO>
+    public interface ICategoryRepository : IRepository<Category>
     {
     }
 }

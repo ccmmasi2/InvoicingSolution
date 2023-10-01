@@ -1,11 +1,8 @@
-﻿using Invoicing.DTOObjects.Models.Base;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Invoicing.DTOObjects.Models
 {
-    [Table("Stores")]
-    public class StoreDTO : BaseDTO
+    public class Store
     {
         [Key]
         public int ID { get; set; }

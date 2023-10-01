@@ -4,7 +4,7 @@ using Invoicing.DTOObjects.Models;
 
 namespace Invoicing.AccessData.ObjectRepository.Interface
 {
-    public class ProductRepository : Repository<ProductDTO>, IProductRepository
+    public class ProductRepository : Repository<Product>, IProductRepository
     {
         private readonly AppDbContext _dbcontext;
 

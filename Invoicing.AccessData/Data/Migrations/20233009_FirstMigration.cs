@@ -7,7 +7,7 @@ namespace Invoicing.AccessData.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Categories",
+                name: "Category",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -16,16 +16,16 @@ namespace Invoicing.AccessData.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
+                    table.PrimaryKey("PK_Category", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Categories_Name",
-                table: "Categories",
+                name: "IX_Category_Name",
+                table: "Category",
                 column: "Name");
 
             migrationBuilder.CreateTable(
-                name: "Stores",
+                name: "Store",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -36,16 +36,16 @@ namespace Invoicing.AccessData.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Stores", x => x.Id);
+                    table.PrimaryKey("PK_Store", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Stores_Name",
-                table: "Stores",
+                name: "IX_Store_Name",
+                table: "Store",
                 column: "Name");
 
             migrationBuilder.CreateTable(
-                name: "Clients",
+                name: "Client",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -61,17 +61,17 @@ namespace Invoicing.AccessData.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clients", x => x.Id);
-                    table.UniqueConstraint("UK_Clients", x => x.Identification);
+                    table.PrimaryKey("PK_Client", x => x.Id);
+                    table.UniqueConstraint("UK_Client", x => x.Identification);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Clients_Identification",
-                table: "Clients",
+                name: "IX_Client_Identification",
+                table: "Client",
                 column: "Identification");
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "Product",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -82,28 +82,28 @@ namespace Invoicing.AccessData.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
-                    table.UniqueConstraint("UK_Products", x => x.Code);
+                    table.PrimaryKey("PK_Product", x => x.Id);
+                    table.UniqueConstraint("UK_Product", x => x.Code);
                     table.ForeignKey(
-                        name: "FK_Products_Categories",
+                        name: "FK_Product_Category",
                         column: x => x.IDCategory,
-                        principalTable: "Categories",
+                        principalTable: "Category",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_IDCategory",
-                table: "Products",
+                name: "IX_Product_IDCategory",
+                table: "Product",
                 column: "IDCategory");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_Code",
-                table: "Products",
+                name: "IX_Product_Code",
+                table: "Product",
                 column: "Code"); 
 
             migrationBuilder.CreateTable(
-                name: "ProductPrices",
+                name: "ProductPrice",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -115,22 +115,22 @@ namespace Invoicing.AccessData.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductPrices", x => x.Id);
+                    table.PrimaryKey("PK_ProductPrice", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductsPrices_Products",
+                        name: "FK_ProductPrice_Product",
                         column: x => x.IDProduct,
-                        principalTable: "Products",
+                        principalTable: "Product",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductPrices_IDProduct",
-                table: "ProductPrices",
+                name: "IX_ProductPrice_IDProduct",
+                table: "ProductPrice",
                 column: "IDProduct");
 
             migrationBuilder.CreateTable(
-                name: "InvoicesHdr",
+                name: "InvoiceHdr",
                 columns: table => new
                 {
                     InvoiceNum = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -140,33 +140,33 @@ namespace Invoicing.AccessData.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InvoicesHdr", x => x.InvoiceNum);
+                    table.PrimaryKey("PK_InvoiceHdr", x => x.InvoiceNum);
                     table.ForeignKey(
-                        name: "FK_InvoicesHdr_Clients",
+                        name: "FK_InvoiceHdr_Client",
                         column: x => x.IDClient,
-                        principalTable: "Clients",
+                        principalTable: "Client",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_InvoicesHdr_Stores",
+                        name: "FK_InvoiceHdr_Store",
                         column: x => x.IDStore,
-                        principalTable: "Stores",
+                        principalTable: "Store",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_InvoicesHdr_IDClient",
-                table: "InvoicesHdr",
+                name: "IX_InvoiceHdr_IDClient",
+                table: "InvoiceHdr",
                 column: "IDClient");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InvoicesHdr_IDStore",
-                table: "InvoicesHdr",
+                name: "IX_InvoiceHdr_IDStore",
+                table: "InvoiceHdr",
                 column: "IDStore");
 
             migrationBuilder.CreateTable(
-                name: "InvoicesDtl",
+                name: "InvoiceDtl",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
@@ -179,54 +179,54 @@ namespace Invoicing.AccessData.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InvoicesDtl", x => x.ID);
+                    table.PrimaryKey("PK_InvoiceDtl", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_InvoicesDtl_InvoicesHdr",
+                        name: "FK_InvoiceDtl_InvoiceHdr",
                         column: x => x.InvoiceNum,
-                        principalTable: "InvoicesHdr",
+                        principalTable: "InvoiceHdr",
                         principalColumn: "InvoiceNum",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_InvoicesDtl_Products",
+                        name: "FK_InvoiceDtl_Product",
                         column: x => x.IDProduct,
-                        principalTable: "Products",
+                        principalTable: "Product",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_InvoicesDtl_InvoiceNum",
-                table: "InvoicesDtl",
+                name: "IX_InvoiceDtl_InvoiceNum",
+                table: "InvoiceDtl",
                 column: "InvoiceNum");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InvoicesDtl_IDProduct",
-                table: "InvoicesDtl",
+                name: "IX_InvoiceDtl_IDProduct",
+                table: "InvoiceDtl",
                 column: "IDProduct");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "InvoicesDtl");
+                name: "InvoiceDtl");
 
             migrationBuilder.DropTable(
-                name: "InvoicesHdr");
+                name: "InvoiceHdr");
 
             migrationBuilder.DropTable(
-                name: "ProductPrices");
+                name: "ProductPrice");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Product");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Category");
 
             migrationBuilder.DropTable(
-                name: "Stores");
+                name: "Store");
 
             migrationBuilder.DropTable(
-                name: "Clients");
+                name: "Client");
         }
     }
 }
