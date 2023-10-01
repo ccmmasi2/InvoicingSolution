@@ -71,9 +71,7 @@ namespace Invoicing.Api.Controllers
                 return BadRequest(Message);
             }
 
-            var itemValidationExists = await _repo.GetOne(
-                                         c => c.Name.ToLower() == Item.Name.ToLower()
-                                        );
+            var itemValidationExists = await _repo.GetOne(c => c.Name.ToLower() == Item.Name.ToLower());
 
             if (itemValidationExists != null)
             {
@@ -101,27 +99,30 @@ namespace Invoicing.Api.Controllers
                 return BadRequest();
             }
 
-            string Message = ValidatePropertyIsNullOrEmpty<Store>.ValidateProperty(Item, "ID", "Name", "City", "Address");
+            string Message = ValidatePropertyIsNullOrEmpty<Store>.ValidateProperty(Item, "ID");
 
             if (!string.IsNullOrEmpty(Message))
             {
                 return BadRequest(Message);
             }
 
-            var itemValidationExists = await _repo.GetOne(
-                                         c => c.ID == Item.ID
-                                        );
+            var itemValidationExists = await _repo.GetOne(c => c.ID == Item.ID);
 
             if (itemValidationExists == null)
             {
                 return BadRequest("Object does not exists!");
             }
 
-            itemValidationExists.Name = Item.Name;
+            if (!string.IsNullOrEmpty(Item.Name))
+                itemValidationExists.Name = Item.Name;
+            if (!string.IsNullOrEmpty(Item.City))
+                itemValidationExists.City = Item.City;
+            if (!string.IsNullOrEmpty(Item.Address))
+                itemValidationExists.Address = Item.Address;
 
             _repo.Update(itemValidationExists);
 
-            return CreatedAtRoute("GetStore", new { id = Item.ID }, Item);
+            return CreatedAtRoute("GetStore", new { id = itemValidationExists.ID }, itemValidationExists);
         }
 
         [HttpDelete("{id}")]

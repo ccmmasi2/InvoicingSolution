@@ -71,9 +71,7 @@ namespace Invoicing.Api.Controllers
                 return BadRequest(Message);
             }
 
-            var itemValidationExists = await _repo.GetOne(
-                                         c => c.Name.ToLower() == Item.Name.ToLower()
-                                        );
+            var itemValidationExists = await _repo.GetOne(c => c.Name.ToLower() == Item.Name.ToLower());
 
             if (itemValidationExists != null)
             {
@@ -106,18 +104,17 @@ namespace Invoicing.Api.Controllers
             if (!string.IsNullOrEmpty(Message))
             {
                 return BadRequest(Message);
-            } 
+            }
 
-            var itemValidationExists = await _repo.GetOne(
-                                         c => c.ID == Item.ID
-                                        );
+            var itemValidationExists = await _repo.GetOne(c => c.ID == Item.ID);
 
             if (itemValidationExists == null)
             {
                 return BadRequest("Object does not exists!");
             }
 
-            itemValidationExists.Name = Item.Name;
+            if (!string.IsNullOrEmpty(Item.Name))
+                itemValidationExists.Name = Item.Name;
 
             _repo.Update(itemValidationExists);
 

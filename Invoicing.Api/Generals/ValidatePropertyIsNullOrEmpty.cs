@@ -19,7 +19,7 @@ namespace Invoicing.Api.Generals
                 {
                     propertyValue = propertyInfo.GetValue(entidad);
 
-                    if (string.IsNullOrEmpty(propertyValue.ToString()) || string.Equals(propertyValue.ToString(), "0"))
+                    if (propertyValue == null ||string.IsNullOrEmpty(propertyValue.ToString()) || string.Equals(propertyValue.ToString(), "0"))
                     {
                         LPropertiesExist.Add(propertyName);
                     }
