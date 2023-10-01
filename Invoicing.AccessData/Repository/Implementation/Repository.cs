@@ -68,10 +68,9 @@ namespace Invoicing.AccessData.Repository.Implementation
             return await query.FirstOrDefaultAsync();
         }
 
-        public bool Insert(T entity)
+        public async Task Insert(T entity)
         {
-            dbSet.AddAsync(entity);
-            return _dbcontext.SaveChanges() > 0;
+            await dbSet.AddAsync(entity);
         }
 
         public bool Remove(int ID)
@@ -89,6 +88,10 @@ namespace Invoicing.AccessData.Repository.Implementation
             var _return = _dbcontext.SaveChanges() > 0;
 
             return _return;
+        }
+        public async Task SaveChanges()
+        {
+            await _dbcontext.SaveChangesAsync();
         }
     }
 }

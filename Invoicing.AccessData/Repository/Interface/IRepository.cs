@@ -15,8 +15,9 @@ namespace Invoicing.AccessData.Repository.Interface
             Expression<Func<T, bool>> filter = null,
             string includeProperties = null
             );
-        bool Insert(T entity);
+        Task Insert(T entity);
         bool Remove(int ID);
         bool Update(T entity);
+        Task SaveChanges();
     }
 }

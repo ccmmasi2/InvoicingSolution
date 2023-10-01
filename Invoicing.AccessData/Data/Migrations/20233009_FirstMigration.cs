@@ -17,6 +17,7 @@ namespace Invoicing.AccessData.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.ID);
+                    table.UniqueConstraint("UK_Category_Name", x => x.Name);
                 });
 
             migrationBuilder.CreateIndex(
@@ -37,6 +38,7 @@ namespace Invoicing.AccessData.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Store", x => x.ID);
+                    table.UniqueConstraint("UK_Store_Name", x => x.Name);
                 });
 
             migrationBuilder.CreateIndex(
@@ -83,7 +85,8 @@ namespace Invoicing.AccessData.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Product", x => x.ID);
-                    table.UniqueConstraint("UK_Product", x => x.Code);
+                    table.UniqueConstraint("UK_Product_Code", x => x.Code);
+                    table.UniqueConstraint("UK_Product_Name", x => x.Name);
                     table.ForeignKey(
                         name: "FK_Product_Category",
                         column: x => x.IDCategory,
@@ -98,9 +101,14 @@ namespace Invoicing.AccessData.Data.Migrations
                 column: "IDCategory");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Product_Name",
+                table: "Product",
+                column: "Name");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Product_Code",
                 table: "Product",
-                column: "Code"); 
+                column: "Code");
 
             migrationBuilder.CreateTable(
                 name: "ProductPrice",

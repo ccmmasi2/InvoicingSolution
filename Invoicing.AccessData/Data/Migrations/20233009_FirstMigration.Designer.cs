@@ -31,7 +31,7 @@ namespace Invoicing.AccessData.Data.Migrations
 
                 b.HasKey("ID");
 
-                b.ToTable("Compania");
+                b.ToTable("Category");
             });
 
             modelBuilder.Entity("Invoicing.DTOObjects.Models.Store", b =>
