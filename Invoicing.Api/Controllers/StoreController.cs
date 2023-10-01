@@ -7,12 +7,12 @@ namespace Invoicing.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class StoreController : ControllerBase
     {
-        private readonly ICategoryRepository _repo;
-        private readonly ILogger<CategoryController> _logger;
+        private readonly IStoreRepository _repo;
+        private readonly ILogger<StoreController> _logger;
 
-        public CategoryController(ICategoryRepository repo, ILogger<CategoryController> logger)
+        public StoreController(IStoreRepository repo, ILogger<StoreController> logger)
         {
             _repo = repo;
             _logger = logger;
@@ -20,18 +20,18 @@ namespace Invoicing.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<Category>>> GetAll()
+        public async Task<ActionResult<IEnumerable<Store>>> GetAll()
         {
             _logger.LogInformation("Get list");
             var listObjects = await _repo.GetAll();
             return Ok(listObjects);
         }
 
-        [HttpGet("{id}", Name = "GetCategory")]
+        [HttpGet("{id}", Name = "GetStore")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Category>> GetById(int id)
+        public async Task<ActionResult<Store>> GetById(int id)
         {
             if (id == 0)
             {
@@ -52,7 +52,7 @@ namespace Invoicing.Api.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Category>> AddObject([FromBody] Category Item)
+        public async Task<ActionResult<Store>> AddObject([FromBody] Store Item)
         {
             if (Item == null)
             {
@@ -64,7 +64,7 @@ namespace Invoicing.Api.Controllers
                 return BadRequest();
             }
 
-            string Message = ValidatePropertyIsNullOrEmpty<Category>.ValidateProperty(Item, "Name");
+            string Message = ValidatePropertyIsNullOrEmpty<Store>.ValidateProperty(Item, "Name", "City", "Address");
 
             if (!string.IsNullOrEmpty(Message))
             {
@@ -83,13 +83,13 @@ namespace Invoicing.Api.Controllers
             await _repo.Insert(Item);
             await _repo.SaveChanges();
 
-            return CreatedAtRoute("GetCategory", new { id = Item.ID }, Item);
+            return CreatedAtRoute("GetStore", new { id = Item.ID }, Item);
         }
 
         [HttpPatch]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Category>> UpdateObject([FromBody] Category Item)
+        public async Task<ActionResult<Store>> UpdateObject([FromBody] Store Item)
         {
             if (Item == null)
             {
@@ -101,12 +101,12 @@ namespace Invoicing.Api.Controllers
                 return BadRequest();
             }
 
-            string Message = ValidatePropertyIsNullOrEmpty<Category>.ValidateProperty(Item, "ID", "Name");
+            string Message = ValidatePropertyIsNullOrEmpty<Store>.ValidateProperty(Item, "ID", "Name", "City", "Address");
 
             if (!string.IsNullOrEmpty(Message))
             {
                 return BadRequest(Message);
-            } 
+            }
 
             var itemValidationExists = await _repo.GetOne(
                                          c => c.ID == Item.ID
@@ -121,7 +121,7 @@ namespace Invoicing.Api.Controllers
 
             _repo.Update(itemValidationExists);
 
-            return CreatedAtRoute("GetCategory", new { id = Item.ID }, Item);
+            return CreatedAtRoute("GetStore", new { id = Item.ID }, Item);
         }
 
         [HttpDelete("{id}")]
