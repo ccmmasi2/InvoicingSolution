@@ -45,7 +45,7 @@ namespace Invoicing.Api.Controllers
                 return NotFound();
             }
 
-            return Ok(Item); 
+            return Ok(Item);
         }
 
         [HttpPost]
@@ -63,11 +63,11 @@ namespace Invoicing.Api.Controllers
                 return BadRequest();
             }
 
-            var empleadoExiste = await _repo.GetOne(
+            var itemValidationExists = await _repo.GetOne(
                                          c => c.Name.ToLower() == Item.Name.ToLower()
                                         );
 
-            if (empleadoExiste != null)
+            if (itemValidationExists != null)
             {
                 return BadRequest("Object already exists!");
             }
@@ -75,7 +75,56 @@ namespace Invoicing.Api.Controllers
             await _repo.Insert(Item);
             await _repo.SaveChanges();
 
-            return CreatedAtRoute("GetCategory", new { id = Item.ID }, Item);  
+            return CreatedAtRoute("GetCategory", new { id = Item.ID }, Item);
+        }
+
+        [HttpPatch]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Category>> UpdateObject([FromBody] Category Item)
+        {
+            if (Item == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var itemValidationExists = await _repo.GetOne(
+                                         c => c.ID == Item.ID
+                                        );
+
+            if (itemValidationExists == null)
+            {
+                return BadRequest("Object does not exists!");
+            }
+
+            itemValidationExists.Name = Item.Name;
+
+            _repo.Update(itemValidationExists);
+
+            return CreatedAtRoute("GetCategory", new { id = Item.ID }, Item);
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> DeleteEmpleado(int id)
+        {
+            var Item = await _repo.GetOne(e => e.ID == id);
+
+            if (Item == null)
+            {
+                return NotFound();
+            }
+
+            _repo.Remove(Item);
+
+            return NoContent();
         }
     }
 }

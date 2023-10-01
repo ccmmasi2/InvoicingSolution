@@ -16,7 +16,7 @@ namespace Invoicing.AccessData.Repository.Interface
             string includeProperties = null
             );
         Task Insert(T entity);
-        bool Remove(int ID);
+        bool Remove(T entity);
         bool Update(T entity);
         Task SaveChanges();
     }

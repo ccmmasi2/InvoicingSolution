@@ -73,21 +73,16 @@ namespace Invoicing.AccessData.Repository.Implementation
             await dbSet.AddAsync(entity);
         }
 
-        public bool Remove(int ID)
+        public bool Remove(T entity)
         {
-            T entityToDelete = dbSet.Find(ID);
-            dbSet.Remove(entityToDelete);
+            dbSet.Remove(entity);
             return _dbcontext.SaveChanges() > 0;
         }
 
         public bool Update(T entity)
         {
-            dbSet.Attach(entity);
             _dbcontext.Entry(entity).State = EntityState.Modified;
-
-            var _return = _dbcontext.SaveChanges() > 0;
-
-            return _return;
+            return _dbcontext.SaveChanges() > 0;
         }
         public async Task SaveChanges()
         {
