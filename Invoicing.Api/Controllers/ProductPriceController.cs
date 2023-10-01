@@ -2,17 +2,18 @@
 using Invoicing.Api.Generals;
 using Invoicing.DTOObjects.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Invoicing.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class ProductPriceController : ControllerBase
     {
-        private readonly ICategoryRepository _repo;
-        private readonly ILogger<CategoryController> _logger;
+        private readonly IProductPriceRepository _repo;
+        private readonly ILogger<ProductPriceController> _logger;
 
-        public CategoryController(ICategoryRepository repo, ILogger<CategoryController> logger)
+        public ProductPriceController(IProductPriceRepository repo, ILogger<ProductPriceController> logger)
         {
             _repo = repo;
             _logger = logger;
@@ -20,18 +21,18 @@ namespace Invoicing.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<Category>>> GetAll()
+        public async Task<ActionResult<IEnumerable<ProductPrice>>> GetAll()
         {
             _logger.LogInformation("Get list");
             var LItems = await _repo.GetAll();
             return Ok(LItems);
         }
 
-        [HttpGet("{id}", Name = "GetCategory")]
+        [HttpGet("{id}", Name = "GetProductPrice")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Category>> GetById(int id)
+        public async Task<ActionResult<ProductPrice>> GetById(int id)
         {
             if (id == 0)
             {
@@ -47,34 +48,12 @@ namespace Invoicing.Api.Controllers
             }
 
             return Ok(Item);
-        }
-
-        [HttpGet("ByName/{name}", Name = "GetCategoryByName")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IEnumerable<Category>>> GetByName(string name)
-        {
-            if (string.IsNullOrEmpty(name))
-            {
-                _logger.LogError("Must send the Name!");
-                return BadRequest();
-            }
-
-            var LItems = await _repo.GetAll(e => e.Name.ToLower().Contains(name.ToLower()));
-
-            if (LItems == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(LItems);
-        }
+        } 
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Category>> AddObject([FromBody] Category Item)
+        public async Task<ActionResult<ProductPrice>> AddObject([FromBody] ProductPrice Item)
         {
             if (Item == null)
             {
@@ -84,25 +63,25 @@ namespace Invoicing.Api.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest();
-            } 
-
-            var itemValidationExists = await _repo.GetOne(c => c.Name.ToLower() == Item.Name.ToLower());
-
-            if (itemValidationExists != null)
-            {
-                return BadRequest("Object already exists!");
             }
+
+            string Message = ValidatePropertyIsNullOrEmpty<ProductPrice>.ValidateProperty(Item, "IDProduct", "Price", "StartDate");
+
+            if (!string.IsNullOrEmpty(Message))
+            {
+                return BadRequest(Message);
+            } 
 
             await _repo.Insert(Item);
             await _repo.SaveChanges();
 
-            return CreatedAtRoute("GetCategory", new { id = Item.ID }, Item);
+            return CreatedAtRoute("GetProductPrice", new { id = Item.ID }, Item);
         }
 
         [HttpPatch]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Category>> UpdateObject([FromBody] Category Item)
+        public async Task<ActionResult<ProductPrice>> UpdateObject([FromBody] ProductPrice Item)
         {
             if (Item == null)
             {
@@ -114,7 +93,7 @@ namespace Invoicing.Api.Controllers
                 return BadRequest();
             }
 
-            string Message = ValidatePropertyIsNullOrEmpty<Category>.ValidateProperty(Item, "ID", "Name");
+            string Message = ValidatePropertyIsNullOrEmpty<ProductPrice>.ValidateProperty(Item, "ID");
 
             if (!string.IsNullOrEmpty(Message))
             {
@@ -128,19 +107,23 @@ namespace Invoicing.Api.Controllers
                 return BadRequest("Object does not exists!");
             }
 
-            if (!string.IsNullOrEmpty(Item.Name))
-                itemValidationExists.Name = Item.Name;
+            if (Item.Price != null)
+                itemValidationExists.Price = Item.Price;
+            if (Item.StartDate != null)
+                itemValidationExists.StartDate = Item.StartDate;
+            if (Item.EndDate != null)
+                itemValidationExists.EndDate = Item.EndDate; 
 
             _repo.Update(itemValidationExists);
 
-            return CreatedAtRoute("GetCategory", new { id = itemValidationExists.ID }, itemValidationExists);
+            return CreatedAtRoute("GetProductPrice", new { id = itemValidationExists.ID }, itemValidationExists);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("ById{id}", Name = "DeleteProductPriceById")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> DeleteEmpleado(int id)
+        public async Task<ActionResult> DeleteProductPriceById(int id)
         {
             var Item = await _repo.GetOne(e => e.ID == id);
 
@@ -152,6 +135,6 @@ namespace Invoicing.Api.Controllers
             _repo.Remove(Item);
 
             return NoContent();
-        }
+        } 
     }
 }

@@ -2,17 +2,18 @@
 using Invoicing.Api.Generals;
 using Invoicing.DTOObjects.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Invoicing.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StoreController : ControllerBase
+    public class ProductController : ControllerBase
     {
-        private readonly IStoreRepository _repo;
-        private readonly ILogger<StoreController> _logger;
+        private readonly IProductRepository _repo;
+        private readonly ILogger<ProductController> _logger;
 
-        public StoreController(IStoreRepository repo, ILogger<StoreController> logger)
+        public ProductController(IProductRepository repo, ILogger<ProductController> logger)
         {
             _repo = repo;
             _logger = logger;
@@ -20,18 +21,18 @@ namespace Invoicing.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<Store>>> GetAll()
+        public async Task<ActionResult<IEnumerable<Product>>> GetAll()
         {
             _logger.LogInformation("Get list");
             var LItems = await _repo.GetAll();
             return Ok(LItems);
         }
 
-        [HttpGet("{id}", Name = "GetStore")]
+        [HttpGet("{id}", Name = "GetProduct")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Store>> GetById(int id)
+        public async Task<ActionResult<Product>> GetById(int id)
         {
             if (id == 0)
             {
@@ -49,19 +50,22 @@ namespace Invoicing.Api.Controllers
             return Ok(Item);
         }
 
-        [HttpGet("ByName/{name}", Name = "GetStoreByName")]
+        [HttpGet("ByName/{filter}", Name = "GetProductByFilter")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IEnumerable<Category>>> GetByName(string name)
+        public async Task<ActionResult<Product>> GetByFilter(string filter)
         {
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(filter))
             {
-                _logger.LogError("Must send the Name!");
+                _logger.LogError("Must send the Name or the Code!");
                 return BadRequest();
             }
 
-            var LItems = await _repo.GetAll(e => e.Name.ToLower().Contains(name.ToLower()));
+            var LItems = await _repo.GetAll(
+                                            e => e.Name.ToLower().Contains(filter.ToLower()) || 
+                                                 e.Code.ToLower().Contains(filter.ToLower())
+                                            );
 
             if (LItems == null)
             {
@@ -74,7 +78,7 @@ namespace Invoicing.Api.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Store>> AddObject([FromBody] Store Item)
+        public async Task<ActionResult<Product>> AddObject([FromBody] Product Item)
         {
             if (Item == null)
             {
@@ -86,14 +90,17 @@ namespace Invoicing.Api.Controllers
                 return BadRequest();
             }
 
-            string Message = ValidatePropertyIsNullOrEmpty<Store>.ValidateProperty(Item, "Name", "City", "Address");
+            string Message = ValidatePropertyIsNullOrEmpty<Product>.ValidateProperty(Item, "Code", "Name", "IDCategory");
 
             if (!string.IsNullOrEmpty(Message))
             {
                 return BadRequest(Message);
             }
 
-            var itemValidationExists = await _repo.GetOne(c => c.Name.ToLower() == Item.Name.ToLower());
+            var itemValidationExists = await _repo.GetOne(
+                                            e => e.Code == Item.Code ||
+                                                 e.Name == Item.Name
+                                            );
 
             if (itemValidationExists != null)
             {
@@ -103,13 +110,13 @@ namespace Invoicing.Api.Controllers
             await _repo.Insert(Item);
             await _repo.SaveChanges();
 
-            return CreatedAtRoute("GetStore", new { id = Item.ID }, Item);
+            return CreatedAtRoute("GetProduct", new { id = Item.ID }, Item);
         }
 
         [HttpPatch]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Store>> UpdateObject([FromBody] Store Item)
+        public async Task<ActionResult<Product>> UpdateObject([FromBody] Product Item)
         {
             if (Item == null)
             {
@@ -121,7 +128,7 @@ namespace Invoicing.Api.Controllers
                 return BadRequest();
             }
 
-            string Message = ValidatePropertyIsNullOrEmpty<Store>.ValidateProperty(Item, "ID");
+            string Message = ValidatePropertyIsNullOrEmpty<Product>.ValidateProperty(Item, "ID");
 
             if (!string.IsNullOrEmpty(Message))
             {
@@ -135,25 +142,61 @@ namespace Invoicing.Api.Controllers
                 return BadRequest("Object does not exists!");
             }
 
+            if (!string.IsNullOrEmpty(Item.Code))
+                itemValidationExists.Code = Item.Code;
             if (!string.IsNullOrEmpty(Item.Name))
                 itemValidationExists.Name = Item.Name;
-            if (!string.IsNullOrEmpty(Item.City))
-                itemValidationExists.City = Item.City;
-            if (!string.IsNullOrEmpty(Item.Address))
-                itemValidationExists.Address = Item.Address;
+            if (Item.IDCategory != null && Item.IDCategory != 0)
+                itemValidationExists.IDCategory = Item.IDCategory;
 
             _repo.Update(itemValidationExists);
 
-            return CreatedAtRoute("GetStore", new { id = itemValidationExists.ID }, itemValidationExists);
+            return CreatedAtRoute("GetProduct", new { id = itemValidationExists.ID }, itemValidationExists);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("ById{id}", Name = "DeleteProductById")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> DeleteEmpleado(int id)
+        public async Task<ActionResult> DeleteProductById(int id)
         {
             var Item = await _repo.GetOne(e => e.ID == id);
+
+            if (Item == null)
+            {
+                return NotFound();
+            }
+
+            _repo.Remove(Item);
+
+            return NoContent();
+        }
+
+        [HttpDelete("ByCode{Code}", Name = "DeleteProductByCode")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> DeleteProductByCode(string Code)
+        {
+            var Item = await _repo.GetOne(e => e.Code == Code);
+
+            if (Item == null)
+            {
+                return NotFound();
+            }
+
+            _repo.Remove(Item);
+
+            return NoContent();
+        }
+
+        [HttpDelete("byName{name}", Name = "DeleteProductByName")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> DeleteProductByName(string name)
+        {
+            var Item = await _repo.GetOne(e => e.Name == name);
 
             if (Item == null)
             {

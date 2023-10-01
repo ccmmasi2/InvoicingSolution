@@ -15,10 +15,10 @@ namespace Invoicing.DTOObjects.Models
         public Product Product { get; set; }
 
         [Required(ErrorMessage = "Required field")]
-        public double Price { get; set; }
+        public double? Price { get; set; }
 
         [Required(ErrorMessage = "Required field")]
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
     }
