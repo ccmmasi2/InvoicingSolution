@@ -12,6 +12,9 @@ namespace Invoicing.AccessData.Configuration
             builder.Property(c => c.Date).IsRequired();
             builder.Property(c => c.IDClient).IsRequired();
             builder.Property(c => c.IDStore).IsRequired();
+
+            builder.HasOne(e => e.Client).WithMany().HasForeignKey(e => e.IDClient);
+            builder.HasOne(e => e.Store).WithMany().HasForeignKey(e => e.IDStore);
         }
     }
 }

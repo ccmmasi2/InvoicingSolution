@@ -14,6 +14,9 @@ namespace Invoicing.AccessData.Configuration
             builder.Property(c => c.IDProduct).IsRequired();
             builder.Property(c => c.Price).IsRequired();
             builder.Property(c => c.QTY).IsRequired();
+
+            builder.HasOne(e => e.InvoiceHdr).WithMany().HasForeignKey(e => e.InvoiceNum);
+            builder.HasOne(e => e.Product).WithMany().HasForeignKey(e => e.IDProduct);
         }
     }
 }

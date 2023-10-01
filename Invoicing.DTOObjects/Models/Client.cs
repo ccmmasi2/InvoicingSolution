@@ -7,8 +7,9 @@ namespace Invoicing.DTOObjects.Models
         [Key]
         public int ID { get; set; }
 
+        [MaxLength(50, ErrorMessage = "The length of the field should be less than 50")]
         [Required(ErrorMessage = "Required field")]
-        public string Identificacion { get; set; }
+        public string Identification { get; set; }
 
         [Required(ErrorMessage = "Required field")]
         [MaxLength(50, ErrorMessage = "The length of the field should be less than 50")]

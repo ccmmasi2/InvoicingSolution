@@ -1,42 +1,35 @@
 [
   {
-    "ID": "1",
     "Code": "PRD-FRJL",
     "Name": "Frijol",
     "IDCategory": 1
   },
   {
-    "ID": "2",
     "Code": "PRD-ARRZ",
     "Name": "Arroz",
     "IDCategory": 1
   },
   {
-    "ID": "3",
     "Code": "PRD-LNTJS",
     "Name": "Lentejas",
     "IDCategory": 1
   },
   {
-    "ID": "4",
     "Code": "PRD-PST",
     "Name": "Pasta",
     "IDCategory": 1
   },
   {
-    "ID": "5",
     "Code": "PRD-SMSNG",
     "Name": "Samsung",
     "IDCategory": 4
   },
   {
-    "ID": "6",
     "Code": "PRD-NK",
     "Name": "Nokia",
     "IDCategory": 4
   },
   {
-    "ID": "7",
     "Code": "PRD-PHN",
     "Name": "IPhone",
     "IDCategory": 4

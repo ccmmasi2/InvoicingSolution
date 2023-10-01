@@ -1,0 +1,62 @@
+[
+  {
+    "IDProduct": 1,
+    "Price": 5000,
+    "StartDate": "2023-01-01",
+    "EndDate": "2023-02-01"
+  },
+  {
+    "IDProduct": 1,
+    "Price": 4900,
+    "StartDate": "2023-02-02",
+    "EndDate": "2023-04-01"
+  },
+  {
+    "IDProduct": 1,
+    "Price": 4500,
+    "StartDate": "2023-04-02",
+    "EndDate": "2023-04-01"
+  },
+  {
+    "IDProduct": 2,
+    "Price": 2400,
+    "StartDate": "2021-04-02",
+    "EndDate": "2023-04-01"
+  },
+  {
+    "IDProduct": 3,
+    "Price": 2100,
+    "StartDate": "2021-04-02",
+    "EndDate": "2023-04-01"
+  },
+  {
+    "IDProduct": 4,
+    "Price": 1500,
+    "StartDate": "2023-01-01",
+    "EndDate": "2023-04-01"
+  },
+  {
+    "IDProduct": 4,
+    "Price": 1500,
+    "StartDate": "2023-02-02",
+    "EndDate": "2023-04-01"
+  },
+  {
+    "IDProduct": 5,
+    "Price": 900000,
+    "StartDate": "2023-02-02",
+    "EndDate": "2023-04-01"
+  },
+  {
+    "IDProduct": 6,
+    "Price": 750000,
+    "StartDate": "2023-02-02",
+    "EndDate": "2023-04-01"
+  },
+  {
+    "IDProduct": 7,
+    "Price": 1500000,
+    "StartDate": "2023-02-02",
+    "EndDate": "2023-04-01"
+  }
+]

@@ -20,7 +20,6 @@ namespace Invoicing.DTOObjects.Models
         [Required(ErrorMessage = "Required field")]
         public DateTime StartDate { get; set; }
 
-        [Required(ErrorMessage = "Required field")]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 }

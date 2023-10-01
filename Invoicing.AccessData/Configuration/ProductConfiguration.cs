@@ -12,6 +12,8 @@ namespace Invoicing.AccessData.Configuration
             builder.Property(c => c.Code).IsRequired().HasMaxLength(50);
             builder.Property(c => c.Name).IsRequired().HasMaxLength(50);
             builder.Property(c => c.IDCategory).IsRequired();
+           
+            builder.HasOne(e => e.Category).WithMany().HasForeignKey(e => e.IDCategory);
         }
     }
 } 

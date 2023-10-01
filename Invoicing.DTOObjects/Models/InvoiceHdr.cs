@@ -6,6 +6,7 @@ namespace Invoicing.DTOObjects.Models
     public class InvoiceHdr
     {
         [Key]
+        [MaxLength(50, ErrorMessage = "The length of the field should be less than 50")]
         public string InvoiceNum { get; set; }
 
         [Required(ErrorMessage = "Required field")]

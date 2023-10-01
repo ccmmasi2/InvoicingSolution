@@ -28,39 +28,39 @@ namespace Invoicing.AccessData.Init
                 throw;
             }
 
-            if (!_db.Categories.Any())
+            if (!_db.Category.Any())
             {
-                var categoriesData = File.ReadAllText("../Invoicing.AccessData/Data/SeedData/Categories.json");
+                var categoriesData = File.ReadAllText("../Invoicing.AccessData/Data/SeedData/Category.json");
                 var categories = JsonSerializer.Deserialize<List<Category>>(categoriesData);
-                _db.Categories.AddRange(categories);
+                _db.Category.AddRange(categories);
             }
 
-            if (!_db.Stores.Any())
+            if (!_db.Store.Any())
             {
-                var storesData = File.ReadAllText("../Invoicing.AccessData/Data/SeedData/Stores.json");
+                var storesData = File.ReadAllText("../Invoicing.AccessData/Data/SeedData/Store.json");
                 var stores = JsonSerializer.Deserialize<List<Store>>(storesData);
-                _db.Stores.AddRange(stores);
+                _db.Store.AddRange(stores);
             }
 
-            if (!_db.Clients.Any())
+            if (!_db.Client.Any())
             {
-                var clientsData = File.ReadAllText("../Invoicing.AccessData/Data/SeedData/Clients.json");
+                var clientsData = File.ReadAllText("../Invoicing.AccessData/Data/SeedData/Client.json");
                 var clients = JsonSerializer.Deserialize<List<Client>>(clientsData);
-                _db.Clients.AddRange(clients);
+                _db.Client.AddRange(clients);
             }
 
-            if (!_db.Products.Any())
+            if (!_db.Product.Any())
             {
-                var productsData = File.ReadAllText("../Invoicing.AccessData/Data/SeedData/Products.json");
+                var productsData = File.ReadAllText("../Invoicing.AccessData/Data/SeedData/Product.json");
                 var products = JsonSerializer.Deserialize<List<Product>>(productsData);
-                _db.Products.AddRange(products);
+                _db.Product.AddRange(products);
             }
 
-            if (!_db.ProductPrices.Any())
+            if (!_db.ProductPrice.Any())
             {
-                var productPricesData = File.ReadAllText("../Invoicing.AccessData/Data/SeedData/ProductPrices.json");
+                var productPricesData = File.ReadAllText("../Invoicing.AccessData/Data/SeedData/ProductPrice.json");
                 var productPrices = JsonSerializer.Deserialize<List<ProductPrice>>(productPricesData);
-                _db.ProductPrices.AddRange(productPrices);
+                _db.ProductPrice.AddRange(productPrices);
             }
 
             if (_db.ChangeTracker.HasChanges())
