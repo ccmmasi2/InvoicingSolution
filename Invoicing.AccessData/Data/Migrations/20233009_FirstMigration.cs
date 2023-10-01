@@ -10,13 +10,13 @@ namespace Invoicing.AccessData.Data.Migrations
                 name: "Category",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Category", x => x.Id);
+                    table.PrimaryKey("PK_Category", x => x.ID);
                 });
 
             migrationBuilder.CreateIndex(
@@ -28,7 +28,7 @@ namespace Invoicing.AccessData.Data.Migrations
                 name: "Store",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     City = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -36,7 +36,7 @@ namespace Invoicing.AccessData.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Store", x => x.Id);
+                    table.PrimaryKey("PK_Store", x => x.ID);
                 });
 
             migrationBuilder.CreateIndex(
@@ -48,7 +48,7 @@ namespace Invoicing.AccessData.Data.Migrations
                 name: "Client",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Identification = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -61,7 +61,7 @@ namespace Invoicing.AccessData.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Client", x => x.Id);
+                    table.PrimaryKey("PK_Client", x => x.ID);
                     table.UniqueConstraint("UK_Client", x => x.Identification);
                 });
 
@@ -74,7 +74,7 @@ namespace Invoicing.AccessData.Data.Migrations
                 name: "Product",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -82,13 +82,13 @@ namespace Invoicing.AccessData.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.Id);
+                    table.PrimaryKey("PK_Product", x => x.ID);
                     table.UniqueConstraint("UK_Product", x => x.Code);
                     table.ForeignKey(
                         name: "FK_Product_Category",
                         column: x => x.IDCategory,
                         principalTable: "Category",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -106,7 +106,7 @@ namespace Invoicing.AccessData.Data.Migrations
                 name: "ProductPrice",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IDProduct = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<double>(type: "numeric(18,2)", nullable: false),
@@ -115,12 +115,12 @@ namespace Invoicing.AccessData.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductPrice", x => x.Id);
+                    table.PrimaryKey("PK_ProductPrice", x => x.ID);
                     table.ForeignKey(
                         name: "FK_ProductPrice_Product",
                         column: x => x.IDProduct,
                         principalTable: "Product",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -145,13 +145,13 @@ namespace Invoicing.AccessData.Data.Migrations
                         name: "FK_InvoiceHdr_Client",
                         column: x => x.IDClient,
                         principalTable: "Client",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_InvoiceHdr_Store",
                         column: x => x.IDStore,
                         principalTable: "Store",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -190,7 +190,7 @@ namespace Invoicing.AccessData.Data.Migrations
                         name: "FK_InvoiceDtl_Product",
                         column: x => x.IDProduct,
                         principalTable: "Product",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
