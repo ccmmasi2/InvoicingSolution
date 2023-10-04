@@ -140,7 +140,7 @@ namespace Invoicing.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> DeleteEmpleado(int id)
+        public async Task<ActionResult> DeleteObject(int id)
         {
             var Item = await _repo.GetOne(e => e.ID == id);
 

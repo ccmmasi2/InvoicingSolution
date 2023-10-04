@@ -24,7 +24,7 @@ namespace Invoicing.Api.Controllers
         public async Task<ActionResult<IEnumerable<Product>>> GetAll()
         {
             _logger.LogInformation("Get list");
-            var LItems = await _repo.GetAll();
+            var LItems = await _repo.GetAll(includeProperties: "Category");
             return Ok(LItems);
         }
 

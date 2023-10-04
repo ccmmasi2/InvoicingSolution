@@ -1,0 +1,37 @@
+[
+  {
+    "Code": "PRD-FRJL",
+    "Name": "Frijol",
+    "IDCategory": 1
+  },
+  {
+    "Code": "PRD-ARRZ",
+    "Name": "Arroz",
+    "IDCategory": 1
+  },
+  {
+    "Code": "PRD-LNTJS",
+    "Name": "Lentejas",
+    "IDCategory": 1
+  },
+  {
+    "Code": "PRD-PST",
+    "Name": "Pasta",
+    "IDCategory": 1
+  },
+  {
+    "Code": "PRD-SMSNG",
+    "Name": "Samsung",
+    "IDCategory": 4
+  },
+  {
+    "Code": "PRD-NK",
+    "Name": "Nokia",
+    "IDCategory": 4
+  },
+  {
+    "Code": "PRD-PHN",
+    "Name": "IPhone",
+    "IDCategory": 4
+  }
+]

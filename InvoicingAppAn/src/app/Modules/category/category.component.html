@@ -1,0 +1,34 @@
+<div class="container pt-4 pb-4">
+  <a href="#MyCollapse" data-bs-toggle="collapse" class="btn btn-primary">Agregar categoría</a>
+  <div class="collapse pt-4 clearfix" id="MyCollapse">
+    <div class="col-md-6" style="float:left;">
+      <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off" class="shadow p-3">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="ej.Papeleria" class="form-control" name="name" #name="ngModel" [(ngModel)]="categoryService.name" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" [disabled]="form.invalid"><i class="fas fa-plus"></i> Agregar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> 
+  {{msgTitle}}
+<br>
+<div class="alert alert-info" role="alert">
+  Listado de categorías
+</div>
+<div class="container">
+  <div class="col-md-6" *ngFor="let category of LCategories">
+    <div class="card shadow p-3 mb-1 h-100">
+      <div class="card-body">
+        <h5 class="card-title">{{category.id}}</h5>
+        <p class="card-text">{{category.name}}</p>
+      </div>
+      <div>
+        <a (click)="onDelete(category.id)" class="btn btn-danger"><i class="fas fa-trash-alt text-white"></i></a>
+      </div>
+    </div>
+  </div>   
+</div> 

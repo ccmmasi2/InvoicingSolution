@@ -1,0 +1,37 @@
+[
+  {
+    "Name": "Tienda Manizales 1",
+    "City": "Manizales",
+    "Address": "Carrera 1 Calle 2"
+  },
+  {
+    "Name": "Tienda Manizales 14",
+    "City": "Manizales",
+    "Address": "Carrera 13 Calle 26"
+  },
+  {
+    "Name": "Tienda Manizales 22",
+    "City": "Manizales",
+    "Address": "Carrera 156 Calle 12"
+  },
+  {
+    "Name": "Tienda Manizales 5",
+    "City": "Manizales",
+    "Address": "Carrera 31 Calle 122"
+  },
+  {
+    "Name": "Tienda Manizales 8",
+    "City": "Manizales",
+    "Address": "Carrera 231 Calle 42"
+  },
+  {
+    "Name": "Tienda Bogotá 1",
+    "City": "Bogotá",
+    "Address": "Carrera 34 Calle 52"
+  },
+  {
+    "Name": "Tienda Bogotá 3",
+    "City": "Manizales",
+    "Address": "Carrera 345 Calle 782"
+  }
+]

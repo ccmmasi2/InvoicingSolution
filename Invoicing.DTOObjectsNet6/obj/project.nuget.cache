@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "uHH9tgATN13+NOUu7g6OK11M3k6Tx90xm+gX81sJhsXYvGKOcnprs1AdTQjuzfLpF253KeCAkIN/0bEx+wEfEw==",
+  "success": true,
+  "projectFilePath": "C:\\Repositorio\\Estudio\\InvoicingSolution\\Invoicing.DTOObjectsNet6\\Invoicing.DTOObjectsNet6.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cristian.montenegro\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.22\\microsoft.windowsdesktop.app.ref.6.0.22.nupkg.sha512",
+    "C:\\Users\\cristian.montenegro\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.22\\microsoft.netcore.app.ref.6.0.22.nupkg.sha512",
+    "C:\\Users\\cristian.montenegro\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.22\\microsoft.aspnetcore.app.ref.6.0.22.nupkg.sha512"
+  ],
+  "logs": []
+}

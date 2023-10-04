@@ -5,9 +5,17 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Invoicing.AccessData", "Invoicing.AccessData\Invoicing.AccessData.csproj", "{234D9879-3AC1-4446-B8E8-02A942E6F10D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicing.Api", "Invoicing.Api\Invoicing.Api.csproj", "{E0E1D7B6-4C8A-42FC-9D5A-57E39BE03C82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Invoicing.Api", "Invoicing.Api\Invoicing.Api.csproj", "{E0E1D7B6-4C8A-42FC-9D5A-57E39BE03C82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicing.DTOObjects", "Invoicing.DTOObjects\Invoicing.DTOObjects.csproj", "{4D2BC5AE-202A-42CE-907E-9D932FBFFF45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Invoicing.DTOObjects", "Invoicing.DTOObjects\Invoicing.DTOObjects.csproj", "{4D2BC5AE-202A-42CE-907E-9D932FBFFF45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicing.Functions", "Invoicing.Functions\Invoicing.Functions.csproj", "{0772A29D-0431-440B-B1AB-3F9855C7961C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicing.AccessDataNet6", "Invoicing.AccessDataNet6\Invoicing.AccessDataNet6.csproj", "{0B7ED639-8BDE-4F5B-825A-ADC2948036FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetCore6", "NetCore6", "{90D6B531-C71D-44C5-9BFE-AFD809548D0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicing.DTOObjectsNet6", "Invoicing.DTOObjectsNet6\Invoicing.DTOObjectsNet6.csproj", "{032C5E07-B5D9-4A6D-A1E1-796B670781A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +35,26 @@ Global
 		{4D2BC5AE-202A-42CE-907E-9D932FBFFF45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D2BC5AE-202A-42CE-907E-9D932FBFFF45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D2BC5AE-202A-42CE-907E-9D932FBFFF45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0772A29D-0431-440B-B1AB-3F9855C7961C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0772A29D-0431-440B-B1AB-3F9855C7961C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0772A29D-0431-440B-B1AB-3F9855C7961C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0772A29D-0431-440B-B1AB-3F9855C7961C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B7ED639-8BDE-4F5B-825A-ADC2948036FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B7ED639-8BDE-4F5B-825A-ADC2948036FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B7ED639-8BDE-4F5B-825A-ADC2948036FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B7ED639-8BDE-4F5B-825A-ADC2948036FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{032C5E07-B5D9-4A6D-A1E1-796B670781A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{032C5E07-B5D9-4A6D-A1E1-796B670781A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{032C5E07-B5D9-4A6D-A1E1-796B670781A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{032C5E07-B5D9-4A6D-A1E1-796B670781A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0772A29D-0431-440B-B1AB-3F9855C7961C} = {90D6B531-C71D-44C5-9BFE-AFD809548D0D}
+		{0B7ED639-8BDE-4F5B-825A-ADC2948036FD} = {90D6B531-C71D-44C5-9BFE-AFD809548D0D}
+		{032C5E07-B5D9-4A6D-A1E1-796B670781A8} = {90D6B531-C71D-44C5-9BFE-AFD809548D0D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65920803-D1A6-4E86-8F98-DC5FB7B98316}

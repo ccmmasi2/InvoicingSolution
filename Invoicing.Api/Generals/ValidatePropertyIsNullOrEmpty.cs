@@ -2,7 +2,7 @@
 
 namespace Invoicing.Api.Generals
 {
-    public static class ValidatePropertyIsNullOrEmpty<T>
+    public static class ValidatePropertyIsNullOrEmpty<T>//Generic class
     {
         public static string ValidateProperty(T entidad, params string[] LPropertyNames)
         {
