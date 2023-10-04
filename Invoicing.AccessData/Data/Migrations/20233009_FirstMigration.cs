@@ -211,6 +211,30 @@ namespace Invoicing.AccessData.Data.Migrations
                 name: "IX_InvoiceDtl_IDProduct",
                 table: "InvoiceDtl",
                 column: "IDProduct");
+
+
+
+
+
+
+
+            migrationBuilder.CreateTable(
+                name: "CreateUserCommand",
+                columns: table => new
+                {
+                    DocumentNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    DocumentTypeId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    FirstLoginDate = table.Column<DateTime>(type: "date", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CreateUserCommand", x => x.DocumentNumber);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -235,6 +259,9 @@ namespace Invoicing.AccessData.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Client");
+
+            migrationBuilder.DropTable(
+                name: "CreateUserCommand");
         }
     }
 }

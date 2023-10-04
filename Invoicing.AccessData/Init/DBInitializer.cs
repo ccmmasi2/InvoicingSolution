@@ -63,6 +63,13 @@ namespace Invoicing.AccessData.Init
                 _db.ProductPrice.AddRange(productPrices);
             }
 
+            if (!_db.CreateUserCommand.Any())
+            {
+                var CreateUserCommandData = File.ReadAllText("../Invoicing.AccessData/Data/SeedData/CreateUserCommand.json");
+                var createUserCommand = JsonSerializer.Deserialize<List<CreateUserCommand>>(CreateUserCommandData);
+                _db.CreateUserCommand.AddRange(createUserCommand);
+            }
+
             if (_db.ChangeTracker.HasChanges())
                 _db.SaveChanges();
         }

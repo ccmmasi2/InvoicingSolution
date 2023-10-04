@@ -1,5 +1,6 @@
 using Invoicing.AccessData.Data;
 using Invoicing.AccessData.Init;
+using Invoicing.AccessData.ObjectRepository.Implementation;
 using Invoicing.AccessData.ObjectRepository.Interface;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,12 +29,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IDBInitializer, DBInitializer>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<IStoreRepository, StoreRepository>();
-builder.Services.AddScoped<IClientRepository, ClientRepository>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IProductPriceRepository, ProductPriceRepository>();
-builder.Services.AddScoped<IInvoiceHdrRepository, InvoiceHdrRepository>();
-builder.Services.AddScoped<IInvoiceDtlRepository, InvoiceDtlRepository>();
+//builder.Services.AddScoped<IStoreRepository, StoreRepository>();
+//builder.Services.AddScoped<IClientRepository, ClientRepository>();
+//builder.Services.AddScoped<IProductRepository, ProductRepository>();
+//builder.Services.AddScoped<IProductPriceRepository, ProductPriceRepository>();
+//builder.Services.AddScoped<IInvoiceHdrRepository, InvoiceHdrRepository>();
+//builder.Services.AddScoped<IInvoiceDtlRepository, InvoiceDtlRepository>();
+builder.Services.AddScoped<ICreateUserCommandRepository, CreateUserCommandRepository>();
 
 var app = builder.Build();
 

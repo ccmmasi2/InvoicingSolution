@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Invoicing.DTOObjectsNet6")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+69bd78d5b4d9cb557c71ad5e522feb909ede795d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Invoicing.DTOObjectsNet6")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Invoicing.DTOObjectsNet6")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

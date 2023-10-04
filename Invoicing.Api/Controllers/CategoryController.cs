@@ -10,12 +10,14 @@ namespace Invoicing.Api.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryRepository _repo;
+        private readonly ICreateUserCommandRepository _repoUser;
         private readonly ILogger<CategoryController> _logger;
 
-        public CategoryController(ICategoryRepository repo, ILogger<CategoryController> logger)
+        public CategoryController(ICategoryRepository repo, ILogger<CategoryController> logger, ICreateUserCommandRepository repoUser)
         {
             _repo = repo;
             _logger = logger;
+            _repoUser = repoUser;
         }
 
         [HttpGet]
@@ -27,131 +29,140 @@ namespace Invoicing.Api.Controllers
             return Ok(LItems);
         }
 
-        [HttpGet("{id}", Name = "GetCategory")]
+        [HttpGet(Name = "GetAllUserCommand")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Category>> GetById(int id)
+        public async Task<ActionResult<IEnumerable<CreateUserCommand>>> GetAllUserCommand()
         {
-            if (id == 0)
-            {
-                _logger.LogError("Must send the ID!");
-                return BadRequest();
-            }
-
-            var Item = await _repo.GetOne(e => e.ID == id);
-
-            if (Item == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(Item);
-        }
-
-        [HttpGet("ByName/{name}", Name = "GetCategoryByName")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IEnumerable<Category>>> GetByName(string name)
-        {
-            if (string.IsNullOrEmpty(name))
-            {
-                _logger.LogError("Must send the Name!");
-                return BadRequest();
-            }
-
-            var LItems = await _repo.GetAll(e => e.Name.ToLower().Contains(name.ToLower()));
-
-            if (LItems == null)
-            {
-                return NotFound();
-            }
-
+            _logger.LogInformation("Get list");
+            var LItems = await _repoUser.GetAll();
             return Ok(LItems);
         }
 
-        [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Category>> AddObject([FromBody] Category Item)
-        {
-            if (Item == null)
-            {
-                return BadRequest();
-            }
+        //[HttpGet("{id}", Name = "GetCategory")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public async Task<ActionResult<Category>> GetById(int id)
+        //{
+        //    if (id == 0)
+        //    {
+        //        _logger.LogError("Must send the ID!");
+        //        return BadRequest();
+        //    }
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            } 
+        //    var Item = await _repo.GetOne(e => e.ID == id);
 
-            var itemValidationExists = await _repo.GetOne(c => c.Name.ToLower() == Item.Name.ToLower());
+        //    if (Item == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (itemValidationExists != null)
-            {
-                return BadRequest("Object already exists!");
-            }
+        //    return Ok(Item);
+        //}
 
-            await _repo.Insert(Item);
-            await _repo.SaveChanges();
+        //[HttpGet("ByName/{name}", Name = "GetCategoryByName")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public async Task<ActionResult<IEnumerable<Category>>> GetByName(string name)
+        //{
+        //    if (string.IsNullOrEmpty(name))
+        //    {
+        //        _logger.LogError("Must send the Name!");
+        //        return BadRequest();
+        //    }
 
-            return CreatedAtRoute("GetCategory", new { id = Item.ID }, Item);
-        }
+        //    var LItems = await _repo.GetAll(e => e.Name.ToLower().Contains(name.ToLower()));
 
-        [HttpPatch]
-        [ProducesResponseType(StatusCodes.Status202Accepted)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Category>> UpdateObject([FromBody] Category Item)
-        {
-            if (Item == null)
-            {
-                return BadRequest();
-            }
+        //    if (LItems == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
+        //    return Ok(LItems);
+        //}
 
-            string Message = ValidatePropertyIsNullOrEmpty<Category>.ValidateProperty(Item, "ID", "Name");
+        //[HttpPost]
+        //[ProducesResponseType(StatusCodes.Status201Created)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public async Task<ActionResult<Category>> AddObject([FromBody] Category Item)
+        //{
+        //    if (Item == null)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            if (!string.IsNullOrEmpty(Message))
-            {
-                return BadRequest(Message);
-            }
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest();
+        //    } 
 
-            var itemValidationExists = await _repo.GetOne(c => c.ID == Item.ID);
+        //    var itemValidationExists = await _repo.GetOne(c => c.Name.ToLower() == Item.Name.ToLower());
 
-            if (itemValidationExists == null)
-            {
-                return BadRequest("Object does not exists!");
-            }
+        //    if (itemValidationExists != null)
+        //    {
+        //        return BadRequest("Object already exists!");
+        //    }
 
-            if (!string.IsNullOrEmpty(Item.Name))
-                itemValidationExists.Name = Item.Name;
+        //    await _repo.Insert(Item);
+        //    await _repo.SaveChanges();
 
-            _repo.Update(itemValidationExists);
+        //    return CreatedAtRoute("GetCategory", new { id = Item.ID }, Item);
+        //}
 
-            return CreatedAtRoute("GetCategory", new { id = itemValidationExists.ID }, itemValidationExists);
-        }
+        //[HttpPatch]
+        //[ProducesResponseType(StatusCodes.Status202Accepted)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public async Task<ActionResult<Category>> UpdateObject([FromBody] Category Item)
+        //{
+        //    if (Item == null)
+        //    {
+        //        return BadRequest();
+        //    }
 
-        [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> DeleteObject(int id)
-        {
-            var Item = await _repo.GetOne(e => e.ID == id);
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            if (Item == null)
-            {
-                return NotFound();
-            }
+        //    string Message = ValidatePropertyIsNullOrEmpty<Category>.ValidateProperty(Item, "ID", "Name");
 
-            _repo.Remove(Item);
+        //    if (!string.IsNullOrEmpty(Message))
+        //    {
+        //        return BadRequest(Message);
+        //    }
 
-            return NoContent();
-        }
+        //    var itemValidationExists = await _repo.GetOne(c => c.ID == Item.ID);
+
+        //    if (itemValidationExists == null)
+        //    {
+        //        return BadRequest("Object does not exists!");
+        //    }
+
+        //    if (!string.IsNullOrEmpty(Item.Name))
+        //        itemValidationExists.Name = Item.Name;
+
+        //    _repo.Update(itemValidationExists);
+
+        //    return CreatedAtRoute("GetCategory", new { id = itemValidationExists.ID }, itemValidationExists);
+        //}
+
+        //[HttpDelete("{id}")]
+        //[ProducesResponseType(StatusCodes.Status204NoContent)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public async Task<ActionResult> DeleteObject(int id)
+        //{
+        //    var Item = await _repo.GetOne(e => e.ID == id);
+
+        //    if (Item == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    _repo.Remove(Item);
+
+        //    return NoContent();
+        //}
     }
 }

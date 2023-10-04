@@ -1,0 +1,12 @@
+C:\Repositorio\Estudio\InvoicingSolution\Invoicing.DTOObjects.Strategy\bin\Debug\net8.0\Invoicing.DTOObjects.Strategy.deps.json
+C:\Repositorio\Estudio\InvoicingSolution\Invoicing.DTOObjects.Strategy\bin\Debug\net8.0\Invoicing.DTOObjects.Strategy.dll
+C:\Repositorio\Estudio\InvoicingSolution\Invoicing.DTOObjects.Strategy\bin\Debug\net8.0\Invoicing.DTOObjects.Strategy.pdb
+C:\Repositorio\Estudio\InvoicingSolution\Invoicing.DTOObjects.Strategy\obj\Debug\net8.0\Invoicing.DTOObjects.Strategy.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repositorio\Estudio\InvoicingSolution\Invoicing.DTOObjects.Strategy\obj\Debug\net8.0\Invoicing.DTOObjects.Strategy.AssemblyInfoInputs.cache
+C:\Repositorio\Estudio\InvoicingSolution\Invoicing.DTOObjects.Strategy\obj\Debug\net8.0\Invoicing.DTOObjects.Strategy.AssemblyInfo.cs
+C:\Repositorio\Estudio\InvoicingSolution\Invoicing.DTOObjects.Strategy\obj\Debug\net8.0\Invoicing.DTOObjects.Strategy.csproj.CoreCompileInputs.cache
+C:\Repositorio\Estudio\InvoicingSolution\Invoicing.DTOObjects.Strategy\obj\Debug\net8.0\Invoicing.DTOObjects.Strategy.sourcelink.json
+C:\Repositorio\Estudio\InvoicingSolution\Invoicing.DTOObjects.Strategy\obj\Debug\net8.0\Invoicing.DTOObjects.Strategy.dll
+C:\Repositorio\Estudio\InvoicingSolution\Invoicing.DTOObjects.Strategy\obj\Debug\net8.0\refint\Invoicing.DTOObjects.Strategy.dll
+C:\Repositorio\Estudio\InvoicingSolution\Invoicing.DTOObjects.Strategy\obj\Debug\net8.0\Invoicing.DTOObjects.Strategy.pdb
+C:\Repositorio\Estudio\InvoicingSolution\Invoicing.DTOObjects.Strategy\obj\Debug\net8.0\ref\Invoicing.DTOObjects.Strategy.dll

@@ -1,10 +1,5 @@
-/.vs/Invoicing.Solution/DesignTimeBuild/.dtbcache.v2
-/.vs/Invoicing.Solution/FileContentIndex/08a36358-a8bb-407d-b673-c489c1fe3631.vsidx
-/.vs/Invoicing.Solution/FileContentIndex/43a4b881-c90c-45fc-b1bc-1cea0cf1fee8.vsidx
-/.vs/Invoicing.Solution/FileContentIndex/8cb01541-2a7e-4e58-a36f-82de2adcec75.vsidx
-/.vs/Invoicing.Solution/FileContentIndex/f78421f0-202c-4132-af23-f57cb920dcee.vsidx
-/.vs/Invoicing.Solution/FileContentIndex/fdaf15b6-6888-4139-ba34-008976dd37c2.vsidx
-/.vs/Invoicing.Solution/v17/.suo
+/.vs
+.vs/
 /Invoicing.AccessData/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
 /Invoicing.AccessData/obj/Debug/net8.0/Invoicing.AccessData.AssemblyInfo.cs
 /Invoicing.AccessData/obj/Debug/net8.0/Invoicing.AccessData.AssemblyInfoInputs.cache
@@ -73,12 +68,7 @@
 /Invoicing.DTOObjects/obj/Invoicing.DTOObjects.csproj.nuget.g.props
 /Invoicing.DTOObjects/obj/Invoicing.DTOObjects.csproj.nuget.g.targets
 /Invoicing.DTOObjects/obj/project.assets.json
-/Invoicing.DTOObjects/obj/project.nuget.cache
-/.vs/Invoicing.Solution/config/applicationhost.config
-/.vs/Invoicing.Solution/FileContentIndex/411bd784-38e2-498f-b576-40e24a43c676.vsidx
-/.vs/Invoicing.Solution/FileContentIndex/73f8c15f-d7b4-4ec4-a94f-f34083c11cc9.vsidx
-/.vs/Invoicing.Solution/FileContentIndex/a8da7655-e4ca-4178-bb6c-c449db06dddd.vsidx
-/.vs/Invoicing.Solution/FileContentIndex/f7f4a3d1-652f-4b4c-9de5-16bb1eae6c4d.vsidx
+/Invoicing.DTOObjects/obj/project.nuget.cache 
 /Invoicing.AccessData/bin/Debug/net8.0/Invoicing.AccessData.deps.json
 /Invoicing.AccessData/bin/Debug/net8.0/Invoicing.AccessData.dll
 /Invoicing.AccessData/bin/Debug/net8.0/Invoicing.AccessData.pdb

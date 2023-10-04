@@ -28,6 +28,15 @@ namespace Invoicing.Api.Controllers
             return Ok(listObjects);
         }
 
+        [HttpGet(Name = "GetAllUserCommand")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<Client>>> GetAllUserCommand()
+        {
+            _logger.LogInformation("Get list");
+            var listObjects = await _repo.GetAll();
+            return Ok(listObjects);
+        }
+
         [HttpGet("{identification}", Name = "GetClient")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

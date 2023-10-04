@@ -16,6 +16,7 @@ namespace Invoicing.AccessData.Data
         public DbSet<ProductPrice> ProductPrice { get; set; }
         public DbSet<InvoiceHdr> InvoiceHdr { get; set; }
         public DbSet<InvoiceDtl> InvoiceDtl { get; set; }
+        public DbSet<CreateUserCommand> CreateUserCommand { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

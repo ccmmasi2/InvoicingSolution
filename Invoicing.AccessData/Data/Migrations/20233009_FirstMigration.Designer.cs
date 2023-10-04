@@ -241,6 +241,58 @@ namespace Invoicing.AccessData.Data.Migrations
                 b.ToTable("InvoiceDtl");
             });
 
+
+
+
+
+
+
+
+            modelBuilder.Entity("Invoicing.DTOObjects.Models.CreateUserCommand", b =>
+            { 
+                b.Property<string>("DocumentNumber")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
+
+                b.Property<int>("DocumentTypeId")
+                    .IsRequired()
+                    .HasColumnType("int");
+
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
+
+                b.Property<string>("LastName")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
+
+                b.Property<string>("PhoneNumber")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
+
+                b.Property<string>("Email")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
+
+                b.Property<string>("Password")
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnType("nvarchar(50)");
+
+                b.Property<DateTime>("FirstLoginDate")
+                    .IsRequired()
+                    .HasColumnType("Date");
+
+                b.HasKey("DocumentNumber");
+
+                b.ToTable("CreateUserCommand");
+            });
+
             base.BuildTargetModel(modelBuilder);
         }
     }

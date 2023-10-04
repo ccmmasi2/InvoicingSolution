@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "3zq9oZ5m7qDcJk+z+aVf9s2mGrkDA4+OZLItqi/xHco=",
+  "Source": "Invoicing.Api.Strategy",
+  "BasePath": "_content/Invoicing.Api.Strategy",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
