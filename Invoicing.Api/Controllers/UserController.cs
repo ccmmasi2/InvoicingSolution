@@ -1,5 +1,4 @@
 ﻿using Invoicing.AccessData.ObjectRepository.Interface;
-using Invoicing.Api.Generals;
 using Invoicing.DTOObjects.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,12 +6,12 @@ namespace Invoicing.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class UserController : ControllerBase
     {
-        private readonly ICategoryRepository _repo;
-        private readonly ILogger<CategoryController> _logger;
+        private readonly ICreateUserRepository _repo;
+        private readonly ILogger<UserController> _logger;
 
-        public CategoryController(ICategoryRepository repo, ILogger<CategoryController> logger)
+        public UserController(ICreateUserRepository repo, ILogger<UserController> logger)
         {
             _repo = repo;
             _logger = logger;
@@ -20,12 +19,12 @@ namespace Invoicing.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<Category>>> GetAll()
+        public async Task<ActionResult<IEnumerable<CreateUser>>> GetAll()
         {
             _logger.LogInformation("Get list");
             var LItems = await _repo.GetAll();
             return Ok(LItems);
-        } 
+        }
 
         //[HttpGet("{id}", Name = "GetCategory")]
         //[ProducesResponseType(StatusCodes.Status200OK)]

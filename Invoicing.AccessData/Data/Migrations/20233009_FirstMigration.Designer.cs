@@ -241,13 +241,6 @@ namespace Invoicing.AccessData.Data.Migrations
                 b.ToTable("InvoiceDtl");
             });
 
-
-
-
-
-
-
-
             modelBuilder.Entity("Invoicing.DTOObjects.Models.CreateUserCommand", b =>
             { 
                 b.Property<string>("DocumentNumber")

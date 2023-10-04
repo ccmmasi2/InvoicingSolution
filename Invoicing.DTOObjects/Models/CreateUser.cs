@@ -2,7 +2,7 @@
 
 namespace Invoicing.DTOObjects.Models
 {
-    public class CreateUserCommand
+    public class CreateUser
     {
         [Key]
         [MaxLength(50, ErrorMessage = "The length of the field should be less than 50")]

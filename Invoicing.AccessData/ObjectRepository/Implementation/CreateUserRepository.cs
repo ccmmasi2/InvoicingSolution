@@ -5,11 +5,11 @@ using Invoicing.DTOObjects.Models;
 
 namespace Invoicing.AccessData.ObjectRepository.Implementation
 {
-    public class CreateUserCommandRepository : Repository<CreateUserCommand>, ICreateUserCommandRepository
+    public class CreateUserRepository : Repository<CreateUser>, ICreateUserRepository
     {
         private readonly AppDbContext _dbcontext;
 
-        public CreateUserCommandRepository(AppDbContext dbcontext) : base(dbcontext)
+        public CreateUserRepository(AppDbContext dbcontext) : base(dbcontext)
         {
             _dbcontext = dbcontext;
         }

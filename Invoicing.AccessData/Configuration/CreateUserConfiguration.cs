@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Invoicing.AccessData.Configuration
 {
-    public class CreateUserCommandConfiguration : IEntityTypeConfiguration<CreateUserCommand>
+    public class CreateUserConfiguration : IEntityTypeConfiguration<CreateUser>
     {
-        public void Configure(EntityTypeBuilder<CreateUserCommand> builder)
+        public void Configure(EntityTypeBuilder<CreateUser> builder)
         {
             builder.Property(c => c.DocumentNumber).IsRequired();
             builder.Property(c => c.DocumentTypeId).IsRequired();

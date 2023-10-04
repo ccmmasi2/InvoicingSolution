@@ -28,14 +28,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
                                             options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IDBInitializer, DBInitializer>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-//builder.Services.AddScoped<IStoreRepository, StoreRepository>();
-//builder.Services.AddScoped<IClientRepository, ClientRepository>();
-//builder.Services.AddScoped<IProductRepository, ProductRepository>();
-//builder.Services.AddScoped<IProductPriceRepository, ProductPriceRepository>();
-//builder.Services.AddScoped<IInvoiceHdrRepository, InvoiceHdrRepository>();
-//builder.Services.AddScoped<IInvoiceDtlRepository, InvoiceDtlRepository>();
-builder.Services.AddScoped<ICreateUserCommandRepository, CreateUserCommandRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>(); 
+builder.Services.AddScoped<ICreateUserRepository, CreateUserRepository>(); 
 
 var app = builder.Build();
 

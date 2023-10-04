@@ -212,12 +212,6 @@ namespace Invoicing.AccessData.Data.Migrations
                 table: "InvoiceDtl",
                 column: "IDProduct");
 
-
-
-
-
-
-
             migrationBuilder.CreateTable(
                 name: "CreateUserCommand",
                 columns: table => new
